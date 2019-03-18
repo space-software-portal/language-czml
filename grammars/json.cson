@@ -1,5 +1,5 @@
-'scopeName': 'source.czml'
-'name': 'CZML'
+'scopeName': 'source.json'
+'name': 'JSON'
 'fileTypes': [
   'czml'
 ]

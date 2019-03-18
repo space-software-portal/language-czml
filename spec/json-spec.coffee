@@ -1,19 +1,19 @@
-describe "CZML grammar", ->
+describe "JSON grammar", ->
   grammar = null
 
   beforeEach ->
     waitsForPromise ->
-      atom.packages.activatePackage('language-czml')
+      atom.packages.activatePackage('language-json')
 
     runs ->
-      grammar = atom.grammars.grammarForScopeName('source.czml')
+      grammar = atom.grammars.grammarForScopeName('source.json')
 
   it "parses the grammar", ->
     expect(grammar).toBeDefined()
-    expect(grammar.scopeName).toBe 'source.czml'
+    expect(grammar.scopeName).toBe 'source.json'
 
   it "tokenizes arrays", ->
-    baseScopes = ['source.czml', 'meta.structure.array.json']
+    baseScopes = ['source.json', 'meta.structure.array.json']
     numericScopes = [baseScopes..., 'constant.numeric.json']
     separatorScopes = [baseScopes..., 'punctuation.separator.array.json']
 
@@ -29,7 +29,7 @@ describe "CZML grammar", ->
     expect(tokens[8]).toEqual value: ']', scopes: [baseScopes..., 'punctuation.definition.array.end.json']
 
   it "identifies trailing commas in arrays", ->
-    baseScopes = ['source.czml', 'meta.structure.array.json']
+    baseScopes = ['source.json', 'meta.structure.array.json']
     numericScopes = [baseScopes..., 'constant.numeric.json']
     separatorScopes = [baseScopes..., 'punctuation.separator.array.json']
 
@@ -41,7 +41,7 @@ describe "CZML grammar", ->
     expect(tokens[4]).toEqual value: ']', scopes: [baseScopes..., 'punctuation.definition.array.end.json']
 
   it "tokenizes objects", ->
-    baseScopes = ['source.czml', 'meta.structure.dictionary.json']
+    baseScopes = ['source.json', 'meta.structure.dictionary.json']
     keyScopes = [baseScopes..., 'meta.structure.dictionary.key.json', 'string.quoted.double.json']
     keyBeginScopes = [keyScopes..., 'punctuation.definition.string.begin.json']
     keyEndScopes = [keyScopes..., 'punctuation.definition.string.end.json']
@@ -79,7 +79,7 @@ describe "CZML grammar", ->
     expect(tokens[25]).toEqual value: '}', scopes: [baseScopes..., 'punctuation.definition.dictionary.end.json']
 
   it "identifies trailing commas in objects", ->
-    baseScopes = ['source.czml', 'meta.structure.dictionary.json']
+    baseScopes = ['source.json', 'meta.structure.dictionary.json']
     keyScopes = [baseScopes..., 'meta.structure.dictionary.key.json', 'string.quoted.double.json']
     keyBeginScopes = [keyScopes..., 'punctuation.definition.string.begin.json']
     keyEndScopes = [keyScopes..., 'punctuation.definition.string.end.json']
